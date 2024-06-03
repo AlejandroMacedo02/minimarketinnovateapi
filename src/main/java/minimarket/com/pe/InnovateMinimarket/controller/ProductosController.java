@@ -23,7 +23,7 @@ public class ProductosController {
 	@Autowired
 	private IProductosService serviceProductos;
 		
-		@GetMapping("productos")
+		@GetMapping("/productos")
 		public List<Productos>buscarTodos(){
 			return serviceProductos.buscarTodos();
 		}

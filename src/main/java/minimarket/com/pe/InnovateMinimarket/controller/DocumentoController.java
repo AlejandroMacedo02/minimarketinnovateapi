@@ -23,7 +23,7 @@ public class DocumentoController {
 	@Autowired
 	private IDocumentoService serviceDocumento;
 		
-		@GetMapping("documento")
+		@GetMapping("/documento")
 		public List<Documento>buscarTodos(){
 			return serviceDocumento.buscarTodos();
 		}
