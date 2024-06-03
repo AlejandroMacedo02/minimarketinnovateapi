@@ -13,61 +13,36 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="usuarios")
-
 public class Usuarios {
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer idusuario;
-	private String nombres;
-	private String apellidos;
-	private String contrasena;
-	private String telefono;
+	private String nombrecompleto;
 	private String email;
-	private LocalDate fechcreacion;
-	private Integer codrol;
+	private String contrasena;
+	private LocalDate fechcreado;
+	private String telefono;
+	private Integer idperfil;
 	
-	//GETTES AND SETTERS 
+	//GETTERS AND SETTERS
 	public Integer getIdusuario() {
 		return idusuario;
 	}
 	public void setIdusuario(Integer idusuario) {
 		this.idusuario = idusuario;
 	}
-	public String getNombres() {
-		return nombres;
+	public String getNombrecompleto() {
+		return nombrecompleto;
 	}
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public void setNombrecompleto(String nombrecompleto) {
+		this.nombrecompleto = nombrecompleto;
 	}
-	public String getApellidos() {
-		return apellidos;
+	public Integer getIdperfil() {
+		return idperfil;
 	}
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-	public String getContrasena() {
-		return contrasena;
-	}
-	public void setContrasena(String contrasena) {
-	//ENCRIPTACION CONTRASEÑA 16 DIGITOS
-		String datos = nombres + apellidos + email;
-		MessageDigest md = null;
-		try {
-		md = MessageDigest.getInstance("SHA-256");
-		}catch(NoSuchAlgorithmException e){
-			e.printStackTrace();
-		}
-		md.update(datos.getBytes());
-		byte[]digest = md.digest();
-		String result = new BigInteger(1,digest).toString(16).toLowerCase();
-		contrasena = result;
-		this.contrasena = contrasena;
-	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setIdperfil(Integer idperfil) {
+		this.idperfil = idperfil;
 	}
 	public String getEmail() {
 		return email;
@@ -75,28 +50,48 @@ public class Usuarios {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public LocalDate getFechcreacion() {
-		return fechcreacion;
+	public String getContrasena() {
+		return contrasena;
 	}
-	public void setFechcreacion(LocalDate fechcreacion) {
-		this.fechcreacion = fechcreacion;
+	public void setContrasena(String contrasena) {
+		//ENCRIPTACION CONTRASEÑA 20 DIGITOS
+				String datos = nombrecompleto + email;
+				MessageDigest md = null;
+				try {
+				md = MessageDigest.getInstance("SHA-256");
+				}catch(NoSuchAlgorithmException e){
+					e.printStackTrace();
+				}
+				md.update(datos.getBytes());
+				byte[]digest = md.digest();
+				String result = new BigInteger(1,digest).toString(20).toLowerCase();
+				contrasena = result;
+		this.contrasena = contrasena;
 	}
-	public Integer getCodrol() {
-		return codrol;
+	public LocalDate getFechcreado() {
+		return fechcreado;
 	}
-	public void setCodrol(Integer codrol) {
-		this.codrol = codrol;
+	public void setFechcreado(LocalDate fechcreado) {
+		this.fechcreado = fechcreado;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	@Override
 	public String toString() {
-		return "Usuarios [idusuario=" + idusuario + ", nombres=" + nombres + ", apellidos=" + apellidos
-				+ ", contrasena=" + contrasena + ", telefono=" + telefono + ", email=" + email + ", fechcreacion="
-				+ fechcreacion + ", codrol=" + codrol + ", getIdusuario()=" + getIdusuario() + ", getNombres()="
-				+ getNombres() + ", getApellidos()=" + getApellidos() + ", getContrasena()=" + getContrasena()
-				+ ", getTelefono()=" + getTelefono() + ", getEmail()=" + getEmail() + ", getFechcreacion()="
-				+ getFechcreacion() + ", getCodrol()=" + getCodrol() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "Usuarios [idusuario=" + idusuario + ", nombrecompleto=" + nombrecompleto + ", idperfil=" + idperfil
+				+ ", email=" + email + ", contrasena=" + contrasena + ", fechcreado=" + fechcreado + ", telefono="
+				+ telefono + ", getIdusuario()=" + getIdusuario() + ", getNombrecompleto()=" + getNombrecompleto()
+				+ ", getIdperfil()=" + getIdperfil() + ", getEmail()=" + getEmail() + ", getContrasena()="
+				+ getContrasena() + ", getFechcreado()=" + getFechcreado() + ", getTelefono()=" + getTelefono()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
+	
+	
 	
 	
 }

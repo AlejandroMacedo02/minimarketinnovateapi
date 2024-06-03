@@ -23,30 +23,30 @@ public class UsuariosController {
 	@Autowired
 	private IUsuariosService serviceUsuarios;
 		
-		@GetMapping("/clientes")
+		@GetMapping("/usuarios")
 		public List<Usuarios>buscarTodos(){
 			return serviceUsuarios.buscarTodos();
 		}
 		
-		@PostMapping("/clientes")
+		@PostMapping("/usuarios")
 		public Usuarios guardar(@RequestBody Usuarios usuario) { 
 			serviceUsuarios.guardar(usuario);
 			return usuario;
 		}
 		
-		@PutMapping("/clientes")
+		@PutMapping("/usuarios")
 		public Usuarios modificar(@RequestBody Usuarios usuario) {
 			serviceUsuarios.modificar(usuario);
 			return usuario;
 		}
 		
-		@GetMapping("/clientes/{id}")
+		@GetMapping("/usuarios/{id}")
 		public Optional<Usuarios> buscarId(@PathVariable("id") Integer id){
 			return serviceUsuarios.buscarId(id);
 		
 		}
 		
-		@DeleteMapping("/clientes/{id}")
+		@DeleteMapping("/usuarios/{id}")
 		public String eliminar(@PathVariable Integer id) {
 			serviceUsuarios.eliminar(id);
 			return "Cliente eliminado";

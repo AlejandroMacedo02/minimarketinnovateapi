@@ -15,9 +15,9 @@ public class UsuariosService implements IUsuariosService {
 
 	@Autowired
 	private UsuariosRepository repoUsuario;
+	
 	public List<Usuarios> buscarTodos(){
 		return repoUsuario.findAll();
-		
 	}
 	public void guardar (Usuarios usuario) {
 		repoUsuario.save(usuario);
